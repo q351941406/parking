@@ -488,10 +488,10 @@ estree-walker@^2.0.2:
   resolved "https://registry.npmmirror.com/estree-walker/-/estree-walker-2.0.2.tgz#52f010178c2a4c117a7757cfe942adb7d2da4cac"
   integrity sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==
 
-ezuikit-js@^7.7.6:
-  version "7.7.8"
-  resolved "https://registry.npmmirror.com/ezuikit-js/-/ezuikit-js-7.7.8.tgz#a864f007501acc320a213315c58e726675cd444f"
-  integrity sha512-DfcPxUhLgchkQU5+0WllD3QghAJYG9mCybCCs0znLoSnMupup6WB1+wjrxPtpt49praQDuMrGoBVe0Mtl1z9/w==
+ezuikit-js@7.7.6:
+  version "7.7.6"
+  resolved "https://registry.npmmirror.com/ezuikit-js/-/ezuikit-js-7.7.6.tgz#28e7637d7e1517d23b3cf7c3235a1188d38edac2"
+  integrity sha512-eizB8ToIBumN7v69SII4poly1ppZGIGQPj9c8yYTmP7KGZpXnqrQAXcjYrN4PRjcI2U7jrJoRr1i4BNIofzYVg==
 
 fsevents@~2.3.2, fsevents@~2.3.3:
   version "2.3.3"

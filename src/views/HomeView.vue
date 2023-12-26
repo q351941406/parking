@@ -1,37 +1,6 @@
-<script setup lang="ts">
-import { ref } from "vue";
-const showVideoModal = ref(false);
-const handleOpen = () => {
-  showVideoModal.value = true;
-};
-const toggleFullScreen = () => {
-  const videoElement = document.getElementById("myVideo");
-  if (videoElement.requestFullscreen) {
-    videoElement.requestFullscreen();
-  } else if (videoElement.mozRequestFullScreen) {
-    // 兼容 Firefox
-    videoElement.mozRequestFullScreen();
-  } else if (videoElement.webkitRequestFullscreen) {
-    // 兼容 Chrome、Safari 和 Opera
-    videoElement.webkitRequestFullscreen();
-  } else if (videoElement.msRequestFullscreen) {
-    // 兼容 IE/Edge
-    videoElement.msRequestFullscreen();
-  }
-};
-const closeVideoModal = (event) => {
-  if (
-    !event.target.closest(".fullscreenButton") &&
-    !event.target.closest("video")
-  ) {
-    showVideoModal.value = false;
-  }
-};
-</script>
-
 <template>
   <div
-    style="background: #000; width: 100vw; height: 9999vh; padding-top: 30px"
+    style="background: #000; width: 100vw; height: 120vh; padding-top: 30px"
   >
     <div class="top">
       <div>
@@ -115,23 +84,89 @@ const closeVideoModal = (event) => {
         </div>
       </div>
 
-      
+      <div class="img2Container">
+        <img src="../assets/1.jpg" alt="" class="img1" @click="handleOpen" />
+        <div class="title">
+          <div>
+            <div class="title_title">Guest Room</div>
+            <div class="title_detail">1 Device - Active</div>
+          </div>
+          <div>
+            <img
+              src="../assets/箭头.png"
+              alt=""
+              class="jiantou"
+              @click="handleOpen"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div v-if="showVideoModal" class="videoModal" @click="closeVideoModal">
+  <div v-show="showVideoModal" class="videoModal" @click="closeVideoModal">
     <!-- 在这里放置全屏播放的视频组件 -->
     <!-- 例如：<VideoPlayer :src="videoSrc" /> -->
-    <video
-      id="myVideo"
-      src="https://media.w3.org/2010/05/sintel/trailer.mp4"
-      controls
-      autoplay
-      style="width: 100vw; height: 100vw"
-    ></video>
-    <button @click="toggleFullScreen" class="fullscreenButton">全屏</button>
+    <div id='playWind1' class="player"></div>
+    
+  
+
   </div>
 </template>
-<style>
+<script setup lang="ts">
+import { ref } from "vue";
+import EZUIKit from "ezuikit-js";
+const showVideoModal = ref(false);
+const handleOpen = () => {
+  showVideoModal.value = true;
+  var width = document.documentElement.clientWidth;
+  var height = (document.documentElement.clientWidth * 9) / 16;
+ 
+  
+
+  const ezopenInit = (elementId, url, accessToken) => {
+    const player = new EZUIKit.EZUIKitPlayer({
+      id: elementId,
+      useHardDev: true,
+      width: width,
+      height: height,
+      template: "c064bc45dd0b4d27ba16d7835199f85d",
+      url: url,
+      accessToken: accessToken,
+    });
+    return player;
+  };
+  const videoElement = document.getElementById("playWind1");
+
+
+  // Initialize the first player
+  window.EZOPENDemo1 = ezopenInit(
+    "playWind1",
+    "ezopen://open.ys7.com/BB8967325/1.hd.live",
+    "at.ac3w8280awshig7d6u119gd6ajkgd8pb-1vybn8xky0-1iz72vc-jccsbwdjp"
+  );
+
+  // Initialize the second player
+  window.EZOPENDemo2 = ezopenInit(
+    "playWind2",
+    "ezopen://open.ys7.com/BB8967325/2.hd.live",
+    "at.ac3w8280awshig7d6u119gd6ajkgd8pb-1vybn8xky0-1iz72vc-jccsbwdjp"
+  );
+};
+
+const closeVideoModal = (event) => {
+  if (
+    !event.target.closest(".fullscreenButton") &&
+    !event.target.closest("video")
+  ) {
+    showVideoModal.value = false;
+  }
+};
+</script>
+<style scoped>
+ .player {
+      margin-bottom: 15px;
+      margin-top:30px;
+    }
 .top {
   padding: 0 20px 20px;
   width: 100vw;
@@ -223,5 +258,11 @@ const closeVideoModal = (event) => {
   width: 35px;
   margin-top: 8px;
   transform: rotate(135deg);
+}
+::v-deep #playWind1-wrap{
+    margin-top:20px;
+}
+::v-deep #playWind2-wrap{
+    margin-top:20px;
 }
 </style>
