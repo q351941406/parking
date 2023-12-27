@@ -1,6 +1,6 @@
 <template>
   <div
-    style="background: #000; width: 100vw; height: 120vh; padding-top: 30px"
+    style="background: #000; width: 100vw; height: 100vh; padding-top: 30px"
   >
  
     <div class="top">
@@ -226,8 +226,9 @@ const closeVideoModal = (event) => {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width:100vw;
+  height: 100vh;
+  z-index: 2222;
   background-color: rgba(0, 0, 0, 0.8);
   text-align: center;
   /* 样式调整和视频组件的布局等 */
@@ -268,9 +269,12 @@ const closeVideoModal = (event) => {
   transform: rotate(135deg);
 }
 ::v-deep #playWind1-wrap{
- 
+  z-index: 11;
 }
 ::v-deep #playWind2-wrap{
     margin-top:20px;
+}
+::v-deep #playWind1-loading-item-txt{
+  margin-top:40px ;
 }
 </style>
