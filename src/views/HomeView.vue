@@ -2,6 +2,7 @@
   <div
     style="background: #000; width: 100vw; height: 120vh; padding-top: 30px"
   >
+ 
     <div class="top">
       <div>
         <div style="display: flex">
@@ -103,10 +104,11 @@
       </div>
     </div>
   </div>
-  <div v-show="showVideoModal" class="videoModal" @click="closeVideoModal" >
+  <div v-show="showVideoModal" class="videoModal" >
     <!-- 在这里放置全屏播放的视频组件 -->
     <!-- 例如：<VideoPlayer :src="videoSrc" /> -->
  <div >
+  <div><img src="../assets/关闭.png" class="close" alt="" @click="closeVideoModal"></div>
   <div id='playWind1' class="player" ></div>
  </div>
     
@@ -156,29 +158,19 @@ const handleOpen = () => {
 };
 
 const closeVideoModal = (event) => {
-  const targetElement = event.target;
-
-  // 通过 querySelector 获取指定元素
-  const playWind1Element = document.querySelector("#playWind1canvas0");
-  const playWind1=document.querySelector("#playWind1-audioControls");
-  console.log(targetElement)
-  console.log(playWind1)
-  // console.log(playWind1Element)
-  debugger
-  // 判断 event.target 是否是指定元素
-  if (
-   
-    targetElement == playWind1Element
-  ) {
-  return
-  }
-  if( targetElement == playWind1){
-   return
-  }
-  showVideoModal.value = false;
+ 
+    showVideoModal.value = false;
+ 
 };
 </script>
 <style scoped>
+.close{
+  position: fixed;
+  z-index: 1111;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+}
  .player {
       margin-bottom: 15px;
       margin-top:30px;
@@ -276,7 +268,7 @@ const closeVideoModal = (event) => {
   transform: rotate(135deg);
 }
 ::v-deep #playWind1-wrap{
-  
+ 
 }
 ::v-deep #playWind2-wrap{
     margin-top:20px;
