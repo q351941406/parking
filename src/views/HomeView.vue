@@ -103,7 +103,7 @@
       </div>
     </div>
   </div>
-  <div v-show="showVideoModal" class="videoModal" @click="closeVideoModal">
+  <div v-show="showVideoModal" class="videoModal" >
     <!-- 在这里放置全屏播放的视频组件 -->
     <!-- 例如：<VideoPlayer :src="videoSrc" /> -->
     <div id='playWind1' class="player"></div>
@@ -154,9 +154,15 @@ const handleOpen = () => {
 };
 
 const closeVideoModal = (event) => {
+  const targetElement = event.target;
+
+  // 通过 querySelector 获取指定元素
+  const playWind1Element = document.querySelector("#playWind1");
+
+  // 判断 event.target 是否是指定元素
   if (
-    !event.target.closest(".fullscreenButton") &&
-    !event.target.closest("video")
+   
+    targetElement !== playWind1Element
   ) {
     showVideoModal.value = false;
   }
@@ -260,7 +266,10 @@ const closeVideoModal = (event) => {
   transform: rotate(135deg);
 }
 ::v-deep #playWind1-wrap{
-    margin-top:20px;
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%,-50%);
 }
 ::v-deep #playWind2-wrap{
     margin-top:20px;
