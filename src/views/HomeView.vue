@@ -103,10 +103,12 @@
       </div>
     </div>
   </div>
-  <div v-show="showVideoModal" class="videoModal" >
+  <div v-show="showVideoModal" class="videoModal" @click="closeVideoModal" >
     <!-- 在这里放置全屏播放的视频组件 -->
     <!-- 例如：<VideoPlayer :src="videoSrc" /> -->
-    <div id='playWind1' class="player"></div>
+ <div >
+  <div id='playWind1' class="player" ></div>
+ </div>
     
   
 
@@ -157,15 +159,23 @@ const closeVideoModal = (event) => {
   const targetElement = event.target;
 
   // 通过 querySelector 获取指定元素
-  const playWind1Element = document.querySelector("#playWind1");
-
+  const playWind1Element = document.querySelector("#playWind1canvas0");
+  const playWind1=document.querySelector("#playWind1-audioControls");
+  console.log(targetElement)
+  console.log(playWind1)
+  // console.log(playWind1Element)
+  debugger
   // 判断 event.target 是否是指定元素
   if (
    
-    targetElement !== playWind1Element
+    targetElement == playWind1Element
   ) {
-    showVideoModal.value = false;
+  return
   }
+  if( targetElement == playWind1){
+   return
+  }
+  showVideoModal.value = false;
 };
 </script>
 <style scoped>
@@ -266,10 +276,7 @@ const closeVideoModal = (event) => {
   transform: rotate(135deg);
 }
 ::v-deep #playWind1-wrap{
-    position: fixed;
-    top: 50vh;
-    left: 50vw;
-    transform: translate(-50%,-50%);
+  
 }
 ::v-deep #playWind2-wrap{
     margin-top:20px;
