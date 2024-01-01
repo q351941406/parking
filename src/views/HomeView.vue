@@ -1,61 +1,77 @@
 <template>
-  <div style="background: #000; width: 100vw; height: 100vh; padding-top: 30px">
+  <div
+    style="background: #000; width: 100vw; min-height: 100vh; padding-top: 30px"
+  >
     <div class="top">
       <div>
         <div style="display: flex">
           <img src="../assets/avator.jpg" alt="" class="avator" />
-          <div class="tip" @click="ifLogin=true">{{userPhone}}</div>
+          <div class="tip" @click="open">{{ userPhone }}</div>
         </div>
       </div>
       <div>
         <img src="../assets/设置.png" alt="" width="28px" />
       </div>
     </div>
-    <div class="content"  v-for="(item,index) in channel" :key="index" >
-      <div class="img1Container" v-if="index==0">
-        <div>
-          <img :src="item.imageUlr" alt="" class="img1" @click="handleOpen(item)" />
-        <div class="title">
-          <div>
-            <div class="title_title">{{item.channelName}}</div>
-            <div class="title_detail">1 Device - Active</div>
-          </div>
-          <div>
-            <img
-              src="../assets/箭头.png"
-              alt=""
-              class="jiantou"
-              @click="handleOpen"
-            />
-          </div>
-        </div> 
-        </div>
-      </div>
-      <div class="img2Container" v-else>
-        <img :src="item.imageUlr" alt="" class="img1" @click="handleOpen(item)" />
-        <div class="title">
-          <div>
-            <div class="title_title">{{item.channelName}}</div>
-            <div class="title_detail">1 Device - Active</div>
-          </div>
-          <div>
-            <img
-              src="../assets/箭头.png"
-              alt=""
-              class="jiantou"
-              @click="handleOpen"
-            />
+
+    <div class="content">
+      <div
+        v-for="(item, index) in channel"
+        :key="index"
+        :style="{ width: (index === 0 ? 100 : 43) + 'vw' }"
+      >
+        <div class="img1Container" v-if="index == 0">
+          <img
+            :src="item.imageUlr"
+            alt=""
+            class="img1"
+            @click="handleOpen(item)"
+          />
+          <div class="title">
+            <div>
+              <div class="title_title">{{ item.channelName }}</div>
+              <div class="title_detail">{{ item.shootTime }}</div>
+            </div>
+            <div>
+              <img
+                src="../assets/箭头.png"
+                alt=""
+                class="jiantou"
+                @click="handleOpen"
+              />
+            </div>
           </div>
         </div>
-      </div>
-    
+        <div class="img2Container" v-else>
+          <img
+            :src="item.imageUlr"
+            alt=""
+            class="img1"
+            @click="handleOpen(item)"
+          />
+          <div class="title">
+            <div>
+              <div class="title_title">{{ item.channelName }}</div>
+              <div class="title_detail">{{ item.shootTime }}</div>
+            </div>
+            <div>
+              <img
+                src="../assets/箭头.png"
+                alt=""
+                class="jiantou"
+                @click="handleOpen"
+              />
+            </div>
+          </div>
         </div>
       </div>
-   
+    </div>
+  </div>
+
   <div class="phoneContainer" v-show="ifLogin">
     <div class="phone">
       <input type="text" placeholder="请输入手机号" v-model="phoneNum" />
-      <input type="submit" value="提交" @click="login" />
+      <input type="submit" value="登录" @click="login" />
     </div>
   </div>
   <div v-show="showVideoModal" class="videoModal">
@@ -78,51 +94,47 @@
 import { onMounted, ref } from "vue";
 import EZUIKit from "ezuikit-js";
 import axios from "axios";
+
 const ifLogin = ref(true);
 const phoneNum = ref();
-const userPhone=ref('未登录')
-const channel=ref();
- const phoneNumber = localStorage.getItem('phoneNumber');
-userPhone.value=phoneNumber==null?'未登录':phoneNumber
- if(phoneNumber!=null){
-  ifLogin.value=false;
- }
- userPhone.value = phoneNumber == undefined ? '未登录' : phoneNumber;
+const userPhone = ref("未登录");
+const channel = ref();
+const phoneNumber = localStorage.getItem("phoneNumber");
+userPhone.value = phoneNumber == null ? "未登录" : phoneNumber;
+if (phoneNumber != null) {
+  ifLogin.value = false;
+}
+userPhone.value = phoneNumber == undefined ? "未登录" : phoneNumber;
 
 if (phoneNumber !== undefined) {
   ifLogin.value = false;
 }
-const  getVideos=()=> {
-   
+const open = () => {
+  ifLogin.value = true;
+  phoneNum.value = userPhone.value;
+};
+const getVideos = () => {
+  const apiUrl = `https://fc.mayizuanqian.com/getVideos?phone=${userPhone.value}`; // 将<phone>替换为实际的电话号码
 
-      const apiUrl = `https://fc.mayizuanqian.com/getVideos?phone=${userPhone.value}`; // 将<phone>替换为实际的电话号码
-
-      axios.get(apiUrl)
-        .then(response => {
-              console.log(response)
-              channel.value=response.data.data;
-   
-        })
-        .catch(error => {
-        
-        });
-   
-  }
-getVideos()
+  axios
+    .get(apiUrl)
+    .then((response) => {
+      console.log(response);
+      channel.value = response.data.data;
+    })
+    .catch((error) => {});
+};
+getVideos();
 const login = () => {
-
   var data = JSON.stringify({
-    phone:phoneNum.value,
+    phone: phoneNum.value,
   });
-  onMounted(()=>{
-   
-  })
+  onMounted(() => {});
 
   var config = {
     method: "post",
     url: "https://fc.mayizuanqian.com/submitPhone",
     headers: {
-
       "Content-Type": "application/json",
       Accept: "*/*",
       Host: "fc.mayizuanqian.com",
@@ -133,12 +145,18 @@ const login = () => {
 
   axios(config)
     .then(function (response) {
-     
-      console.log(JSON.stringify(response.data));
-      userPhone.value=phoneNum.value;
-      localStorage.setItem('phoneNumber', phoneNum.value);
-   
-      ifLogin.value=false;
+      // console.log(JSON.stringify(response.data.message));
+      // console.log(JSON.stringify(response.data.message == "手机号不合法"));
+      // if (JSON.stringify(response.data.message) == "手机号不合法") {
+      //   alert("手机号不合法");
+      //   debugger;
+      //   return;
+      // }
+      // debugger;
+      userPhone.value = phoneNum.value;
+      localStorage.setItem("phoneNumber", phoneNum.value);
+
+      ifLogin.value = false;
       getVideos();
     })
     .catch(function (error) {
@@ -146,11 +164,10 @@ const login = () => {
     });
 };
 
-
 const showVideoModal = ref(false);
 const handleOpen = (item) => {
-    // console.log(item.url)
-    // debugger
+  // console.log(item.url)
+  // debugger
   showVideoModal.value = true;
   var width = document.documentElement.clientWidth;
   var height = (document.documentElement.clientWidth * 9) / 16;
@@ -170,11 +187,7 @@ const handleOpen = (item) => {
   const videoElement = document.getElementById("playWind1");
 
   // Initialize the first player
-  window.EZOPENDemo1 = ezopenInit(
-    "playWind1",
-     item.url,
-    "at.ac3w8280awshig7d6u119gd6ajkgd8pb-1vybn8xky0-1iz72vc-jccsbwdjp"
-  );
+  window.EZOPENDemo1 = ezopenInit("playWind1", item.url, item.accessToken);
 };
 
 const closeVideoModal = (event) => {
@@ -269,6 +282,7 @@ const closeVideoModal = (event) => {
 }
 .content {
   margin-top: 20px;
+
   padding: 0 20px 0px;
   width: 100vw;
   display: flex;
@@ -283,7 +297,7 @@ const closeVideoModal = (event) => {
   position: relative;
 }
 .img2Container {
-  width: 47%;
+  width: 100%;
   height: 150px;
   margin-top: 10px;
   overflow: hidden;
