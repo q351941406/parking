@@ -90,7 +90,7 @@
     </div>
   </div>
 </template>
-<script setup lang="ts">
+<script setup lang="js">
 import { onMounted, ref } from "vue";
 import EZUIKit from "ezuikit-js";
 import axios from "axios";
@@ -229,10 +229,10 @@ const handleOpen = (item) => {
   const videoElement = document.getElementById("playWind1");
 
   // Initialize the first player
-  window.EZOPENDemo1 = ezopenInit("playWind1", item.url, item.accessToken);
+ window.EZOPENDemo1 = ezopenInit("playWind1", item.url, item.accessToken);
 };
 
-const closeVideoModal = (event) => {
+const closeVideoModal = () => {
   showVideoModal.value = false;
 };
 </script>
