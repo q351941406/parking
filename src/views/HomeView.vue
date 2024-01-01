@@ -132,6 +132,32 @@ const login = () => {
   //    getVideos()
   //     return
   // }
+  const apiUrl = `https://fc.mayizuanqian.com/getVideos?phone=${phoneNum.value}`; // 将<phone>替换为实际的电话号码
+
+  axios
+    .get(apiUrl)
+    .then((response) => {
+      console.log(response.data);
+      if (response.data.code == "0") {
+        userPhone.value = phoneNum.value;
+        localStorage.setItem("phoneNumber", phoneNum.value);
+
+        ifLogin.value = false;
+        getVideos();
+      } else {
+       alert('手机号不存在')
+        if (response.data.data.message == "手机号不合法") {
+          alert("手机号不合法,请重新输入");
+      
+        }else{
+          
+          console.log(response.data)
+        }
+      }
+      channel.value = response.data.data;
+    })
+    .catch((error) => {});
+    return
 
   var data = JSON.stringify({
     phone: phoneNum.value,
