@@ -111,7 +111,7 @@ if (phoneNumber !== undefined) {
 }
 const open = () => {
   ifLogin.value = true;
-  phoneNum.value = userPhone.value=='未登录'?'':userPhone.value;
+  phoneNum.value = userPhone.value == "未登录" ? "" : userPhone.value;
 };
 const getVideos = () => {
   const apiUrl = `https://fc.mayizuanqian.com/getVideos?phone=${userPhone.value}`; // 将<phone>替换为实际的电话号码
@@ -126,6 +126,13 @@ const getVideos = () => {
 };
 getVideos();
 const login = () => {
+  // console.log(localStorage.getItem("phoneNumber"))
+  // if(localStorage.getItem("phoneNumber")){
+  //     ifLogin.value = false;
+  //    getVideos()
+  //     return
+  // }
+
   var data = JSON.stringify({
     phone: phoneNum.value,
   });
@@ -145,7 +152,6 @@ const login = () => {
 
   axios(config)
     .then(function (response) {
-      console.log(JSON.stringify(response.data));
       // console.log(JSON.stringify(response.data.message == "手机号不合法"));
       // if (JSON.stringify(response.data.message) == "手机号不合法") {
       //   alert("手机号不合法");
@@ -153,11 +159,21 @@ const login = () => {
       //   return;
       // }
       // debugger;
-      userPhone.value = phoneNum.value;
-      localStorage.setItem("phoneNumber", phoneNum.value);
+      if (response.data.code == "0") {
+        userPhone.value = phoneNum.value;
+        localStorage.setItem("phoneNumber", phoneNum.value);
 
-      ifLogin.value = false;
-      getVideos();
+        ifLogin.value = false;
+        getVideos();
+      } else {
+       
+        if (response.data.message == "手机号不合法") {
+          alert("手机号不合法,请重新输入");
+      
+        }else{
+          console.log(response.data)
+        }
+      }
     })
     .catch(function (error) {
       console.log(error);
@@ -171,9 +187,9 @@ const handleOpen = (item) => {
   showVideoModal.value = true;
   var width = document.documentElement.clientWidth;
   var height = (document.documentElement.clientWidth * 9) / 16;
-
+  let player;
   const ezopenInit = (elementId, url, accessToken) => {
-    const player = new EZUIKit.EZUIKitPlayer({
+   player = new EZUIKit.EZUIKitPlayer({
       id: elementId,
       useHardDev: true,
       width: width,
