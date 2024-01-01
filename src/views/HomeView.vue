@@ -111,7 +111,7 @@ if (phoneNumber !== undefined) {
 }
 const open = () => {
   ifLogin.value = true;
-  phoneNum.value = userPhone.value;
+  phoneNum.value = userPhone.value=='未登录'?'':userPhone.value;
 };
 const getVideos = () => {
   const apiUrl = `https://fc.mayizuanqian.com/getVideos?phone=${userPhone.value}`; // 将<phone>替换为实际的电话号码
@@ -145,7 +145,7 @@ const login = () => {
 
   axios(config)
     .then(function (response) {
-      // console.log(JSON.stringify(response.data.message));
+      console.log(JSON.stringify(response.data));
       // console.log(JSON.stringify(response.data.message == "手机号不合法"));
       // if (JSON.stringify(response.data.message) == "手机号不合法") {
       //   alert("手机号不合法");
