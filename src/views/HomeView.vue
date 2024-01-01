@@ -14,7 +14,7 @@
     <div class="content"  v-for="(item,index) in channel" :key="index" >
       <div class="img1Container" v-if="index==0">
         <div>
-          <img :src="imageUlr" alt="" class="img1" @click="handleOpen(item)" />
+          <img :src="item.imageUlr" alt="" class="img1" @click="handleOpen(item)" />
         <div class="title">
           <div>
             <div class="title_title">{{item.channelName}}</div>
@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="img2Container" v-else>
-        <img :src="imageUlr" alt="" class="img1" @click="handleOpen(item)" />
+        <img :src="item.imageUlr" alt="" class="img1" @click="handleOpen(item)" />
         <div class="title">
           <div>
             <div class="title_title">{{item.channelName}}</div>
