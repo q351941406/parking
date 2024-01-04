@@ -67,7 +67,7 @@
     <div class="modal-box p-0">
       <div id="playWind1"></div>
       <!-- 您可以在这里添加一个关闭按钮 -->
-      <button class="btn btn-sm absolute right-4 top-4 border: none;" onclick="my_modal_play.close()">
+      <button class="btn btn-sm absolute right-4 top-4 " onclick="my_modal_play.close()">
         <IconClose class="text-primary-500 h-5 w-5"></IconClose>
       </button>
       <button class="btn btn-sm absolute right-4 bottom-4" @click="fullScreen">
