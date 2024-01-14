@@ -11,10 +11,13 @@
     "type-check": "vue-tsc --build --force"
   },
   "dependencies": {
+    "@authing/guard-vue3": "^5.3.2",
     "axios": "^1.6.3",
     "ezuikit-js": "7.7.6",
+    "photoswipe": "^5.4.3",
     "vue": "^3.3.11",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.2",

@@ -7,6 +7,47 @@
   resolved "https://registry.npmjs.org/@alloc/quick-lru/-/quick-lru-5.2.0.tgz"
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
+"@authing/guard-shim-react@^4.5.7":
+  version "4.5.7"
+  resolved "https://registry.npmjs.org/@authing/guard-shim-react/-/guard-shim-react-4.5.7.tgz"
+  integrity sha512-1qHlh4aO+2WpbkU5qdo9g5qhrZMowtQ+KLzGSXPAC6sL1cf1iICmmrh8sMsMgLf1m2QOLcmYRngJZbCHVWzhPw==
+
+"@authing/guard-vue3@^5.3.2":
+  version "5.3.2"
+  resolved "https://registry.npmjs.org/@authing/guard-vue3/-/guard-vue3-5.3.2.tgz"
+  integrity sha512-NXEASK2N1tM8jxBd3LXDdM4q7ndBGpOarfV/Ndg8vpbuGPmwRMqVm6b617bDjGAKbpTuyG7JIfV32HrtIWjhBA==
+  dependencies:
+    "@authing/guard" "^5.3.2"
+    vue "^3.2.37"
+
+"@authing/guard@^5.3.2":
+  version "5.3.2"
+  resolved "https://registry.npmjs.org/@authing/guard/-/guard-5.3.2.tgz"
+  integrity sha512-rhnA20GfdAFTX9qb6lYqdaewr3QIwW9Lf5aELePPG52oY/C2+FgWZqI++orq0W8DE3FxPaMOPRkvHMYFAmEvdg==
+  dependencies:
+    "@authing/react-ui-components" "^4.5.0-alpha.4"
+    axios "^0.27.2"
+    react "^16.14.0"
+    react-dom "^16.14.0"
+
+"@authing/native-js-ui-components@^4.5.7":
+  version "4.5.7"
+  resolved "https://registry.npmjs.org/@authing/native-js-ui-components/-/native-js-ui-components-4.5.7.tgz"
+  integrity sha512-rBhQweQm4A3uKvOxI9AbXdonjZEzFX64eNQkONYA/14Qxk5v+P/hJ2LE+vjgibZr2pV2nbiuisY+gUnNCVyGpw==
+  dependencies:
+    "@authing/guard-shim-react" "^4.5.7"
+    react "^16.13.1"
+    react-dom "^16.13.1"
+
+"@authing/react-ui-components@^4.5.0-alpha.4":
+  version "4.5.7"
+  resolved "https://registry.npmjs.org/@authing/react-ui-components/-/react-ui-components-4.5.7.tgz"
+  integrity sha512-5c2tIi+CmgiFliDNhXDzayCZRqz2nHjLMwbxCuq0SCjmjjJDLrasswLmWMqGPLtsYKI76CT+KO+0QwiZoM0MXQ==
+  dependencies:
+    "@authing/guard-shim-react" "^4.5.7"
+    "@authing/native-js-ui-components" "^4.5.7"
+    react "^16.13.1"
+
 "@babel/code-frame@^7.21.4":
   version "7.23.5"
   resolved "https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.23.5.tgz"
@@ -38,6 +79,13 @@
   version "0.19.10"
   resolved "https://registry.npmjs.org/@esbuild/darwin-arm64/-/darwin-arm64-0.19.10.tgz"
   integrity sha512-YSRRs2zOpwypck+6GL3wGXx2gNP7DXzetmo5pHXLrY/VIMsS59yKfjPizQ4lLt5vEI80M41gjm2BxrGZ5U+VMA==
+
+"@fingerprintjs/fingerprintjs@^3.4.2":
+  version "3.4.2"
+  resolved "https://registry.npmjs.org/@fingerprintjs/fingerprintjs/-/fingerprintjs-3.4.2.tgz"
+  integrity sha512-3Ncze6JsJpB7BpYhqIgvBpfvEX1jsEKrad5hQBpyRQxtoAp6hx3+R46zqfsuQG4D9egQZ+xftQ0u4LPFMB7Wmg==
+  dependencies:
+    tslib "^2.4.1"
 
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"
@@ -200,7 +248,7 @@
     "@vue/compiler-dom" "3.3.13"
     "@vue/shared" "3.3.13"
 
-"@vue/devtools-api@^6.5.0":
+"@vue/devtools-api@^6.0.0-beta.11", "@vue/devtools-api@^6.5.0":
   version "6.5.1"
   resolved "https://registry.npmjs.org/@vue/devtools-api/-/devtools-api-6.5.1.tgz"
   integrity sha512-+KpckaAQyfbvshdDW5xQylLni1asvNSGme1JFs8I1+/H5pHEhqUKMEQD/qn3Nx5+/nycBq11qAEi8lk+LXI2dA==
@@ -325,6 +373,18 @@ asynckit@^0.4.0:
   resolved "https://registry.npmjs.org/asynckit/-/asynckit-0.4.0.tgz"
   integrity sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==
 
+authing-js-sdk@^4.23.44:
+  version "4.23.50"
+  resolved "https://registry.npmjs.org/authing-js-sdk/-/authing-js-sdk-4.23.50.tgz"
+  integrity sha512-3a9ZWjXM/7dK3OKiRGovi47ZEHvQZf/L02HaJTZlD+MAH3gjVt7+UycZGI0rP3BP7R4J1NhuFjqui1Jv8+MdKQ==
+  dependencies:
+    "@fingerprintjs/fingerprintjs" "^3.4.2"
+    axios "0.26.1"
+    crypto-js "^4.0.0"
+    jsencrypt "^3.1.0"
+    jwt-decode "^2.2.0"
+    sm-crypto "^0.3.7"
+
 autoprefixer@^10.4.16:
   version "10.4.16"
   resolved "https://registry.npmjs.org/autoprefixer/-/autoprefixer-10.4.16.tgz"
@@ -337,6 +397,14 @@ autoprefixer@^10.4.16:
     picocolors "^1.0.0"
     postcss-value-parser "^4.2.0"
 
+axios@^0.27.2:
+  version "0.27.2"
+  resolved "https://registry.npmjs.org/axios/-/axios-0.27.2.tgz"
+  integrity sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==
+  dependencies:
+    follow-redirects "^1.14.9"
+    form-data "^4.0.0"
+
 axios@^1.6.3:
   version "1.6.3"
   resolved "https://registry.npmjs.org/axios/-/axios-1.6.3.tgz"
@@ -345,6 +413,13 @@ axios@^1.6.3:
     follow-redirects "^1.15.0"
     form-data "^4.0.0"
     proxy-from-env "^1.1.0"
+
+axios@0.26.1:
+  version "0.26.1"
+  resolved "https://registry.npmjs.org/axios/-/axios-0.26.1.tgz"
+  integrity sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==
+  dependencies:
+    follow-redirects "^1.14.8"
 
 balanced-match@^1.0.0:
   version "1.0.2"
@@ -463,6 +538,11 @@ cross-spawn@^7.0.0, cross-spawn@^7.0.3:
     path-key "^3.1.0"
     shebang-command "^2.0.0"
     which "^2.0.1"
+
+crypto-js@^4.0.0:
+  version "4.2.0"
+  resolved "https://registry.npmjs.org/crypto-js/-/crypto-js-4.2.0.tgz"
+  integrity sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==
 
 css-selector-tokenizer@^0.8:
   version "0.8.0"
@@ -623,7 +703,7 @@ fill-range@^7.0.1:
   dependencies:
     to-regex-range "^5.0.1"
 
-follow-redirects@^1.15.0:
+follow-redirects@^1.14.8, follow-redirects@^1.14.9, follow-redirects@^1.15.0:
   version "1.15.4"
   resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.15.4.tgz"
   integrity sha512-Cr4D/5wlrb0z9dgERpUL3LrmPKVDsETIJhaCMeDfuFYcqa5bldGV6wBsAN6X/vxlXQtFBMrXdXxdL8CbDTGniw==
@@ -776,15 +856,30 @@ jiti@^1.19.1:
   resolved "https://registry.npmjs.org/jiti/-/jiti-1.21.0.tgz"
   integrity sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==
 
-js-tokens@^4.0.0:
+"js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz"
   integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
+
+jsbn@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/jsbn/-/jsbn-1.1.0.tgz"
+  integrity sha512-4bYVV3aAMtDTTu4+xsDYa6sy9GyJ69/amsu9sYF2zqjiEoZA5xJi3BrfX3uY+/IekIu7MwdObdbDWpoZdBv3/A==
+
+jsencrypt@^3.1.0:
+  version "3.3.2"
+  resolved "https://registry.npmjs.org/jsencrypt/-/jsencrypt-3.3.2.tgz"
+  integrity sha512-arQR1R1ESGdAxY7ZheWr12wCaF2yF47v5qpB76TtV64H1pyGudk9Hvw8Y9tb/FiTIaaTRUyaSnm5T/Y53Ghm/A==
 
 json-parse-even-better-errors@^3.0.0:
   version "3.0.1"
   resolved "https://registry.npmjs.org/json-parse-even-better-errors/-/json-parse-even-better-errors-3.0.1.tgz"
   integrity sha512-aatBvbL26wVUCLmbWdCpeu9iF5wOyWpagiKkInA+kfws3sWdBrTnsvN2CKcyCYyUrc7rebNBlK6+kteg7ksecg==
+
+jwt-decode@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.npmjs.org/jwt-decode/-/jwt-decode-2.2.0.tgz"
+  integrity sha512-86GgN2vzfUu7m9Wcj63iUkuDzFNYFVmjeDm2GzWpUk+opB0pEpMsw6ePCMrhYkumz2C1ihqtZzOMAg7FiXcNoQ==
 
 lilconfig@^2.1.0:
   version "2.1.0"
@@ -805,6 +900,13 @@ lines-and-columns@^2.0.3:
   version "2.0.4"
   resolved "https://registry.npmjs.org/lines-and-columns/-/lines-and-columns-2.0.4.tgz"
   integrity sha512-wM1+Z03eypVAVUCE7QdSqpVIvelbOakn1M0bPDoA4SGWPx3sNDVUiMo3L6To6WWGClB7VyXnhQ4Sn7gxiJbE6A==
+
+loose-envify@^1.1.0, loose-envify@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz"
+  integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
+  dependencies:
+    js-tokens "^3.0.0 || ^4.0.0"
 
 lru-cache@^10.0.1, "lru-cache@^9.1.1 || ^10.0.0":
   version "10.1.0"
@@ -924,7 +1026,7 @@ npm-run-all2@^6.1.1:
     read-pkg "^8.0.0"
     shell-quote "^1.7.3"
 
-object-assign@^4.0.1:
+object-assign@^4.0.1, object-assign@^4.1.1:
   version "4.1.1"
   resolved "https://registry.npmjs.org/object-assign/-/object-assign-4.1.1.tgz"
   integrity sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==
@@ -967,6 +1069,11 @@ path-scurry@^1.10.1:
   dependencies:
     lru-cache "^9.1.1 || ^10.0.0"
     minipass "^5.0.0 || ^6.0.2 || ^7.0.0"
+
+photoswipe@^5.4.3:
+  version "5.4.3"
+  resolved "https://registry.npmjs.org/photoswipe/-/photoswipe-5.4.3.tgz"
+  integrity sha512-9UC6oJBK4oXFZ5HcdlcvGkfEHsVrmE4csUdCQhEjHYb3PvPLO3PG7UhnPuOgjxwmhq5s17Un5NUdum01LgBDng==
 
 picocolors@^1, picocolors@^1.0.0:
   version "1.0.0"
@@ -1046,6 +1153,15 @@ postcss@^8.0.0, postcss@^8.1.0, postcss@^8.2.14, postcss@^8.4.21, postcss@^8.4.2
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
+prop-types@^15.6.2:
+  version "15.8.1"
+  resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
+  integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
+  dependencies:
+    loose-envify "^1.4.0"
+    object-assign "^4.1.1"
+    react-is "^16.13.1"
+
 proxy-from-env@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/proxy-from-env/-/proxy-from-env-1.1.0.tgz"
@@ -1055,6 +1171,30 @@ queue-microtask@^1.2.2:
   version "1.2.3"
   resolved "https://registry.npmjs.org/queue-microtask/-/queue-microtask-1.2.3.tgz"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
+
+react-dom@^16.13.1, react-dom@^16.14.0:
+  version "16.14.0"
+  resolved "https://registry.npmjs.org/react-dom/-/react-dom-16.14.0.tgz"
+  integrity sha512-1gCeQXDLoIqMgqD3IO2Ah9bnf0w9kzhwN5q4FGnHZ67hBm9yePzB5JJAIQCc8x3pFnNlwFq4RidZggNAAkzWWw==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    scheduler "^0.19.1"
+
+react-is@^16.13.1:
+  version "16.13.1"
+  resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
+  integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+
+react@^16.13.1, react@^16.14.0:
+  version "16.14.0"
+  resolved "https://registry.npmjs.org/react/-/react-16.14.0.tgz"
+  integrity sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
 
 read-cache@^1.0.0:
   version "1.0.0"
@@ -1121,6 +1261,14 @@ run-parallel@^1.1.9:
   dependencies:
     queue-microtask "^1.2.2"
 
+scheduler@^0.19.1:
+  version "0.19.1"
+  resolved "https://registry.npmjs.org/scheduler/-/scheduler-0.19.1.tgz"
+  integrity sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+
 semver@^7.3.5, semver@^7.5.4:
   version "7.5.4"
   resolved "https://registry.npmjs.org/semver/-/semver-7.5.4.tgz"
@@ -1149,6 +1297,13 @@ signal-exit@^4.0.1:
   version "4.1.0"
   resolved "https://registry.npmjs.org/signal-exit/-/signal-exit-4.1.0.tgz"
   integrity sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==
+
+sm-crypto@^0.3.7:
+  version "0.3.13"
+  resolved "https://registry.npmjs.org/sm-crypto/-/sm-crypto-0.3.13.tgz"
+  integrity sha512-ztNF+pZq6viCPMA1A6KKu3bgpkmYti5avykRHbcFIdSipFdkVmfUw2CnpM2kBJyppIalqvczLNM3wR8OQ0pT5w==
+  dependencies:
+    jsbn "^1.1.0"
 
 source-map-js@^1.0.2:
   version "1.0.2"
@@ -1308,6 +1463,11 @@ ts-interface-checker@^0.1.9:
   resolved "https://registry.npmjs.org/ts-interface-checker/-/ts-interface-checker-0.1.13.tgz"
   integrity sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==
 
+tslib@^2.4.1:
+  version "2.6.2"
+  resolved "https://registry.npmjs.org/tslib/-/tslib-2.6.2.tgz"
+  integrity sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==
+
 type-fest@^3.8.0:
   version "3.13.1"
   resolved "https://registry.npmjs.org/type-fest/-/type-fest-3.13.1.tgz"
@@ -1384,7 +1544,7 @@ vue-tsc@^1.8.25:
     "@vue/language-core" "1.8.27"
     semver "^7.5.4"
 
-vue@^3.2.0, vue@^3.2.25, vue@^3.3.11, vue@3.3.13:
+vue@^3.2.0, vue@^3.2.25, vue@^3.2.37, vue@^3.3.11, vue@3.3.13:
   version "3.3.13"
   resolved "https://registry.npmjs.org/vue/-/vue-3.3.13.tgz"
   integrity sha512-LDnUpQvDgsfc0u/YgtAgTMXJlJQqjkxW1PVcOnJA5cshPleULDjHi7U45pl2VJYazSSvLH8UKcid/kzH8I0a0Q==
@@ -1394,6 +1554,13 @@ vue@^3.2.0, vue@^3.2.25, vue@^3.3.11, vue@3.3.13:
     "@vue/runtime-dom" "3.3.13"
     "@vue/server-renderer" "3.3.13"
     "@vue/shared" "3.3.13"
+
+vuex@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npmjs.org/vuex/-/vuex-4.1.0.tgz"
+  integrity sha512-hmV6UerDrPcgbSy9ORAtNXDr9M4wlNP4pEFKye4ujJF8oqgFFuxDCdOLS3eNoRTtq5O3hoBDh9Doj1bQMYHRbQ==
+  dependencies:
+    "@vue/devtools-api" "^6.0.0-beta.11"
 
 which@^2.0.1:
   version "2.0.2"

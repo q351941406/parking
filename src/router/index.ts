@@ -1,23 +1,61 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+// import old from '../views/old.vue'
+
+import { useGuard } from '@authing/guard-vue3'
+import { isUserLoggedIn } from '@/components/Tool.js';
+
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView
+      name: 'Home',
+      component: () => import('../views/HomeView.vue'),
+      meta: { requiresAuth: false }
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+      path: '/detail/:id',
+      name: 'Detail',
+      component: () => import('../views/DetailView.vue'),
+      meta: { requiresAuth: false }
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: () => import('../views/ProfileView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/order',
+      name: 'Order',
+      component: () => import('../views/OrderView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/cameraList',
+      name: 'CameraList',
+      component: () => import('../views/CameraList.vue'),
+      meta: { requiresAuth: false }
     }
+    
   ]
 })
-
+// 每次切换页面都会来到的方法
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  // 假设有个函数isUserLoggedIn()来判断用户是否登录，需要你自己实现
+  const isLoggedIn = isUserLoggedIn(); 
+  if (requiresAuth && !isLoggedIn) {// 用户未登录，需要认证的页面将重定向到登录页或者首页
+    // next({ name: 'login' }); // 假设登录页面的路由名为 'login'
+    const guard = useGuard()
+    guard.startWithRedirect({
+      state: 'some-random-string'
+    })
+  } else {
+    // 用户已登录，或者访问不需要认证的页面，正常导航
+    next();
+  }
+});
 export default router
