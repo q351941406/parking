@@ -22,5 +22,5 @@ app.use(router)
 app.use(store)
 
 
-store.dispatch('fetchUserInfo') // 在这里调用 action 获取用户信息
+store.dispatch('fetchUserInfo') // 在这里调用action获取用户信息
 app.mount('#app')
