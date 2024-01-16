@@ -18,7 +18,7 @@ export default createStore({
   actions: {
     async fetchUserInfo({ commit }) {
       const urlParams = new URLSearchParams(window.location.search);
-      let token = urlParams.get('token');
+      let token = urlParams.get('id_token');
       if (!token) {
         const info = localStorage.getItem('userInfo');
         const parsedInfo = JSON.parse(info); // Convert JSON string to object

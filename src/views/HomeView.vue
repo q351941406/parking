@@ -26,7 +26,7 @@
                         </button>
                     </div>
                     <ul tabindex="0"
-                        class="mt-3 z-[1] p-2 shadow menu menu-md dropdown-content bg-base-100 rounded-box w-52">
+                        class="mt-3 z-[1] p-2 shadow menu menu-lg dropdown-content bg-base-100 rounded-box w-52">
                         <li>
                             <button class="justify-between" @click="goProfile">
                                 个人中心
@@ -81,11 +81,13 @@ import IconPoint from '../components/icons/IconPoint.vue'
 import IconBig from '../components/icons/IconBig.vue'
 import IconClose from '../components/icons/IconClose.vue'
 import { useStore } from 'vuex';
-
+import { useGuard } from "@authing/guard-vue3";
 const data = ref();
 
 const router = useRouter();
 const store = useStore();
+const guard = useGuard();
+
 
 function goProfile() {
     router.push({ name: 'Profile' });
@@ -96,7 +98,9 @@ function goOrder() {
 }
 
 function goLogout() {
-
+    // const logout = () => guard.logout({
+    //     // redirectUri:''
+    // });
 }
 onMounted(() => {
 
