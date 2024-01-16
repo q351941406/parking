@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting...</title>
+  <script>
+    // 检查URL是否含有 "from=404"（避免无限循环重定向）
+    if(location.search.indexOf('from=404') < 0) {
+      // 直接通过 JavaScript 重定向到将 index.html 作为入口点的 URL，携带原始路径和查询参数
+      var path = location.pathname + location.search + location.hash;
+      location.href = '/index.html?' + encodeURI(path);
+    }
+  </script>
+</head>
+<body>
+  <p>If you are not redirected automatically, follow the <a href="/">link to homepage</a>.</p>
+</body>
+</html>

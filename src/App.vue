@@ -1,11 +1,16 @@
 <script setup lang="ts">
+import { onMounted } from "vue";
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+
+onMounted(() => {
+  document.body.setAttribute('data-theme', 'cupcake');
+  document.body.classList.add('bg-base-100');
+  
+})
 
 </script>
 
 <template>
-
   <RouterView />
 </template>
 
