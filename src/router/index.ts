@@ -38,6 +38,11 @@ const router = createRouter({
       name: 'CameraList',
       component: () => import('../views/CameraList.vue'),
       meta: { requiresAuth: false }
+    },
+    {
+      path: '/callback',
+      name: 'Callback',
+      component: () => import('../views/Callback.vue'),
     }
     
   ]

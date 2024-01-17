@@ -28,10 +28,10 @@ export default createStore({
       const response = await fetch(`${import.meta.env.VITE_APP_API_BASE_URL}/user_info`, {
         headers: token ? { 'Authorization': `${token}` } : {}
       }); // 调用 API 获取用户信息
-      const userInfo = await response.json();
-      if(userInfo.code === 0) {
-        commit('SET_USER_INFO', userInfo.data); // 使用 mutation 更新用户信息
-        localStorage.setItem('userInfo', JSON.stringify(userInfo.data)); // 将用户信息保存到本地存储中
+      const result = await response.json();
+      if(result.code === 0) {
+        commit('SET_USER_INFO', result.data); // 使用 mutation 更新用户信息
+        localStorage.setItem('userInfo', JSON.stringify(result.data)); // 将用户信息保存到本地存储中
       }
     },
   },

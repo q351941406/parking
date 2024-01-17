@@ -38,7 +38,7 @@
                             </button>
                         </li>
 
-                        <li><button @click="goLogout">退出登录</button></li>
+                        <li v-if="store.state.userInfo" ><button @click="goLogout">退出登录</button></li>
                     </ul>
                 </div>
             </div>
@@ -98,9 +98,13 @@ function goOrder() {
 }
 
 function goLogout() {
-    // const logout = () => guard.logout({
-    //     // redirectUri:''
-    // });
+    // 这里有问题,退出登录后不用输手机号又重新登录了,因为cookie没删除
+    guard.logout();
+    store.commit('SET_USER_INFO', null);
+    localStorage.removeItem('userInfo');
+    // 刷新
+    window.location.reload();
+    
 }
 onMounted(() => {
 

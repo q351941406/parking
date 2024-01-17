@@ -10,9 +10,11 @@ import type { GuardOptions } from '@authing/guard-vue3'
 import '@authing/guard-vue3/dist/esm/guard.min.css'
 import store from '../src/components/Store.js'
 
+
 const guardOptions: GuardOptions = {
     appId: '659b2eb96bdd76001d515666',
-    redirectUri:`${import.meta.env.VITE_APP_API_BASE_URL}/auth/loginCallback`,
+    // redirectUri:`${import.meta.env.VITE_APP_API_BASE_URL}/auth/loginCallback`,
+    redirectUri:`${window.location.origin}/callback`,
 }
 
 const app = createApp(App)
