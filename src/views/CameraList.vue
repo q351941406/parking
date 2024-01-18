@@ -25,7 +25,7 @@
                         <h2 class="card-title text-sm">{{ item.title }}</h2>
                         <p class="text-xs">{{ item.updatedAt }}</p>
                         <div class="card-actions justify-center">
-                            <button class="btn btn-block" @click="handleOpen(item)">查看</button>
+                            <button class="btn btn-block btn-primary" @click="handleOpen(item)">查看</button>
                         </div>
                     </div>
                 </div>

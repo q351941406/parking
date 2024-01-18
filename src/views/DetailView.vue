@@ -2,7 +2,7 @@
   <div data-theme="cupcake" class="detail">
     <div class="navbar bg-base-100 shadow-sm">
       <div class="navbar-start ">
-        <button class="btn btn-ghost" @click="goBack" >
+        <button class="btn btn-ghost" @click="goBack">
           <IconBack class="size-5"></IconBack>
         </button>
       </div>
@@ -33,7 +33,7 @@
             <p class="text-neutral text-sm">距离机场约9分钟车程</p>
           </div>
         </div>
-        <button class="btn btn-sm btn-secondary" @click="togglePlayView">
+        <button class="btn btn-sm btn-primary" @click="togglePlayView">
           <IconLive class="size-5"></IconLive>
           查看直播
         </button>
@@ -49,23 +49,53 @@
       </div>
     </div>
 
+
+
+    <!-- select -->
+    <div class="price-wrapper flex flex-col p-5 bg-white gap-2.5 shadow-sm">
+      <div v-for="(item, index) in data.price" :key="index"
+        class="price-item flex justify-between bg-white p-5 rounded-lg text-xl border border-gray-200"
+        :class="{ 'border-primary': currentPrice == item.price }" @click="currentPrice = item.price">
+        <div class="left">
+          <strong class="text-lg">{{ item.name }}</strong>
+          <div class="text-sm">停车时段: 0:00-24:00</div>
+        </div>
+
+        <div class="left">
+          <span class="stat-value text-accent text-2xl"> ¥{{ item.price }}/天</span>
+        </div>
+      </div>
+    </div>
+
+
     <!-- Footer -->
-    <div class="fixed inset-x-0 bottom-0 bg-white px-4 py-3 border-t border-gray-300">
+    <div class="fixed inset-x-0 bottom-0 bg-white px-4 py-3 border-t border-gray-300 ">
       <div class="flex justify-between items-center">
+        <div class="flex-1 align-middle">
+          <!-- <div class=" align-middle"> -->
+            <span class="text  mr-2 total-price">总费用：
+              <span class="stat-value text-accent text-2xl">¥{{ currentPrice * currentPriceCount }}</span>
+            </span>
+          <!-- </div> -->
+        </div>
         <div class="flex-1">
-          <div class="flex items-center">
-            <span class="text-gray-600 mr-2">费用：</span>
-            <span class="text-red-500 text-2xl" x-text="quantity * 20 + '.00元'"></span>
+          <div class="items-center">
+            <button class="btn btn-sm mx-1 btn-primary" @click="currentPriceCount += 1"> + </button>
+            <span class="stat-value text-xl">{{ currentPriceCount }}</span>
+            <button class="btn btn-sm mx-1.5 btn-primary" :disabled="currentPriceCount == 1"
+              @click="currentPriceCount -= 1">
+              - </button>
           </div>
         </div>
-        <button class="btn rounded-lg btn-secondary" @click="alertTip">立即支付</button>
+        <button class="btn rounded-lg btn-primary" :disabled="currentPrice == 0" @click="alertTip">立即支付</button>
       </div>
     </div>
 
 
 
+
     <!-- 弹窗 -->
-    
+
     <PlayView v-if="showPlayView" @close="handleClose" :item="data.Cameras[0]" />
 
 
@@ -93,20 +123,23 @@ const showPlayView = ref(false);
 let id = 0;
 const guard = useGuard()
 
+const currentPrice = ref(null);
+const currentPriceCount = ref(1);
+
 function alertTip() {
   if (store.state.userInfo) {
     alert('支付成功');
-  }else {
+  } else {
     guard.startWithRedirect({
       state: 'some-random-string'
     })
   }
 }
-function goBack(){
+function goBack() {
   router.go(-1);
 }
 function togglePlayView() {
-  if(data.value.Cameras.length === 0) {
+  if (data.value.Cameras.length === 0) {
     alert('暂无直播');
     return;
   }
@@ -114,7 +147,7 @@ function togglePlayView() {
   // showPlayView.value = !showPlayView.value;
   showPlayView.value = true
 }
-function handleClose (){
+function handleClose() {
   showPlayView.value = false
 }
 
@@ -152,6 +185,7 @@ const getData = async () => {
   const result = await response.json();
   if (result.code === 0) {
     data.value = result.data;
+    currentPrice.value = result.data.price[0].price
   } else {
     alert(result.message);
   }

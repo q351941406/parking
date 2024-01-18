@@ -61,7 +61,7 @@
                                 tag.title }}
                             </div>
 
-                            <button class="btn btn-block" @click="handleOpen(item)">查看</button>
+                            <button class="btn btn-block btn-primary" @click="handleOpen(item)">查看</button>
                         </div>
                     </div>
                 </div>
@@ -78,8 +78,6 @@ import { onMounted, ref } from "vue";
 import { useRouter } from 'vue-router';
 import IconSetting from '../components/icons/IconSetting.vue'
 import IconPoint from '../components/icons/IconPoint.vue'
-import IconBig from '../components/icons/IconBig.vue'
-import IconClose from '../components/icons/IconClose.vue'
 import { useStore } from 'vuex';
 import { useGuard } from "@authing/guard-vue3";
 const data = ref();
