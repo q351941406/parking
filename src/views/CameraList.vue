@@ -16,7 +16,7 @@
 
         </div>
         <div class="flex justify-center p-5">
-
+            <span v-if="isLoading" class="loading loading-spinner loading-lg"></span>
             <div
                 class="grid  card-compact grid-flow-row-dense grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                 <div v-for="(item, index) in data" :key="index" class="card w-full shadow-xl">
@@ -46,6 +46,7 @@ import PlayView from './PlayView.vue'
 const showPlayView = ref(false);
 const store = useStore();
 const data = ref();
+const isLoading = ref(true);
 const router = useRouter();
 const currentSelectItem = ref();
 function goBack() {
@@ -71,6 +72,7 @@ const getData = async () => {
     } else {
         alert(result.message);
     }
+    isLoading.value = false
 };
 getData();
 </script>

@@ -15,7 +15,9 @@
       </div>
 
     </div>
-
+    <div v-if="isLoading" class="fixedbg-opacity-50 z-50 flex items-center justify-center">
+    <span class="loading loading-spinner loading-lg"></span>
+  </div>
     <div class="mt-0 shadow-sm bg-white">
       <div class="carousel carousel-center  p-0 space-x-1 bg-neutral  w-full" id="gallery">
         <a class="carousel-item flex items-end" v-for="(item, index) in data.scene_imgs" :key="index" :href="item.url"
@@ -58,7 +60,7 @@
         :class="{ 'border-primary': currentPrice == item.price }" @click="currentPrice = item.price">
         <div class="left">
           <strong class="text-lg">{{ item.name }}</strong>
-          <div class="text-sm">停车时段: 0:00-24:00</div>
+          <div class="text-sm">{{ item.detail }}</div>
         </div>
 
         <div class="left">
@@ -116,6 +118,7 @@ import IconBack from '../components/icons/IconBack.vue'
 import PlayView from './PlayView.vue'
 
 const data = ref([]);
+const isLoading = ref(true);
 const store = useStore();
 const router = useRouter();
 const lightbox = ref(null);
@@ -189,6 +192,7 @@ const getData = async () => {
   } else {
     alert(result.message);
   }
+  isLoading.value = false
 };
 
 </script>

@@ -38,14 +38,16 @@
                             </button>
                         </li>
 
-                        <li v-if="store.state.userInfo" ><button @click="goLogout">退出登录</button></li>
+                        <li v-if="store.state.userInfo"><button @click="goLogout">退出登录</button></li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <div class="flex justify-center">
+            
 
+        <div class="flex justify-center">
+            <span v-if="isLoading" class="loading loading-spinner loading-lg"></span>
             <div
                 class="grid card-compact  grid-flow-row-dense grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mx-3 mt-2">
                 <div v-for="(item, index) in data" :key="index" class="card w-full shadow-xl">
@@ -81,6 +83,7 @@ import IconPoint from '../components/icons/IconPoint.vue'
 import { useStore } from 'vuex';
 import { useGuard } from "@authing/guard-vue3";
 const data = ref();
+const isLoading = ref(true);
 
 const router = useRouter();
 const store = useStore();
@@ -102,7 +105,7 @@ function goLogout() {
     localStorage.removeItem('userInfo');
     // 刷新
     window.location.reload();
-    
+
 }
 onMounted(() => {
 
@@ -123,6 +126,7 @@ const getData = async () => {
     } else {
         alert(result.message);
     }
+    isLoading.value = false
 };
 getData();
 </script>
