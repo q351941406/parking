@@ -1,7 +1,7 @@
 <template >
     <dialog id="my_modal_play" class="modal">
         <div class="modal-box p-0">
-            <div class="text text-accent text-center bg-base-100 ">您未在此停车场下单,只能查看一个角度</div>
+            <!-- <div class="text text-accent text-center bg-base-100 ">您未在此停车场下单,只能查看一个角度</div> -->
             <div class="" id="playWind1"></div>
             
             <!-- 您可以在这里添加一个关闭按钮 -->

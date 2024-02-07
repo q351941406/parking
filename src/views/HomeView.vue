@@ -122,7 +122,8 @@ const getData = async () => {
     }); // 调用 API 获取用户信息
     const result = await response.json();
     if (result.code === 0) {
-        data.value = [...result.data, ...result.data, ...result.data];
+        // data.value = [...result.data, ...result.data, ...result.data];
+        data.value = result.data
     } else {
         alert(result.message);
     }
