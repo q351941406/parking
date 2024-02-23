@@ -38,6 +38,7 @@ onMounted(() => {
 onUnmounted(() => {
   if (player) {
     console.log('销毁了');
+    player.destroy();// 不调这个方法的话,不会停止流
     player = null;
   }
 });
