@@ -47,6 +47,8 @@ const router = createRouter({
     
   ]
 })
+
+
 // 每次切换页面都会来到的方法
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
@@ -55,8 +57,10 @@ router.beforeEach((to, from, next) => {
   if (requiresAuth && !isLoggedIn) {// 用户未登录，需要认证的页面将重定向到登录页或者首页
     // next({ name: 'login' }); // 假设登录页面的路由名为 'login'
     const guard = useGuard()
+    let url = new URL(window.location.origin);
+    let domain = url.hostname;
     guard.startWithRedirect({
-      state: 'some-random-string'
+      state: domain
     })
   } else {
     // 用户已登录，或者访问不需要认证的页面，正常导航
