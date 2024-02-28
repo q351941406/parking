@@ -11,17 +11,21 @@ import '@authing/guard-vue3/dist/esm/guard.min.css'
 import store from '../src/components/Store.js'
 
 
+
+const dumain = `${window.location.origin}/callback`
+console.log('dumain',dumain);
+
 // 全部在前端处理完,不需要后端处理
 const guardOptions: GuardOptions = {
     appId: '65d8b5d805fe059574b1ff72',
     // redirectUri:`${import.meta.env.VITE_APP_API_BASE_URL}/auth/loginCallback`,
-    redirectUri:`${window.location.origin}/callback`,// 官网后台可以配置多个,但这里指定其中一个
+    redirectUri:dumain,// 官网后台可以配置多个,但这里指定其中一个
 }
 
 const app = createApp(App)
 app.use(
     createGuard(guardOptions)
-);
+)
 app.use(router)
 app.use(store)
 
