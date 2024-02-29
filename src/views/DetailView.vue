@@ -82,11 +82,13 @@
         </div>
         <div class="flex-1">
           <div class="items-center">
-            <button class="btn btn-sm mx-1 btn-primary" @click="currentPriceCount += 1"> + </button>
-            <span class="stat-value text-xl">{{ currentPriceCount }}</span>
+            
             <button class="btn btn-sm mx-1.5 btn-primary" :disabled="currentPriceCount == 1"
               @click="currentPriceCount -= 1">
               - </button>
+              <span class="stat-value text-xl">{{ currentPriceCount }}</span>
+            <button class="btn btn-sm mx-1 btn-primary" @click="currentPriceCount += 1"> + </button>
+            
           </div>
         </div>
         <button class="btn rounded-lg btn-primary" :disabled="currentPrice == 0" @click="alertTip">立即支付</button>
