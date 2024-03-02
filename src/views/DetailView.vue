@@ -91,7 +91,7 @@
             
           </div>
         </div>
-        <button class="btn rounded-lg btn-primary" :disabled="currentPrice == 0" @click="alertTip">立即支付</button>
+        <button class="btn rounded-lg btn-primary" :disabled="currentPrice == 0" @click="alertTip">立即下单</button>
       </div>
     </div>
 
@@ -133,7 +133,7 @@ const currentPriceCount = ref(1);
 
 function alertTip() {
   if (store.state.userInfo) {
-    alert('支付成功');
+    alert('请致电客服:18380486293');
   } else {
     guard.startWithRedirect({
       state: 'some-random-string'
