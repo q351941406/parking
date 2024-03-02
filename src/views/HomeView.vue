@@ -11,7 +11,7 @@
             <div class="flex-1">
                 <div class="avatar">
                     <div class="size-10 rounded-full">
-                        <img src="../assets/avator.jpg" alt="" />
+                        <img src="../assets/avator.jpg" @click="goProfile" alt="" />
                     </div>
                 </div>
                 <div class="badge badge-secondary badge-lg ml-0" @click="goProfile">{{ $store.state.userInfo &&
@@ -98,9 +98,9 @@ function goOrder() {
     router.push({ name: 'CameraList' });
 }
 
-function goLogout() {
-    // 这里有问题,退出登录后不用输手机号又重新登录了,因为cookie没删除
-    guard.logout();
+async function goLogout() {
+    // 调试的时候可以把await去掉,这样再次登录的时候就不用验证码了,因为平台没退出
+    await guard.logout(); 
     store.commit('SET_USER_INFO', null);
     localStorage.removeItem('userInfo');
     // 刷新
