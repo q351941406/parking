@@ -30,7 +30,7 @@ const handleAuthingLoginCallback = async () => {
         // 3. 获取到登录用户的用户信息
         const userInfo  = await guard.trackSession()
 
-        console.log(userInfo)
+        // console.log(userInfo)
         const response = await fetch(`${import.meta.env.VITE_APP_API_BASE_URL}/auth/saveUser`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
