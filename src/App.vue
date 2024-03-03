@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView } from "vue-router";
 
 onMounted(() => {
-  document.body.setAttribute('data-theme', 'cupcake');
-  document.body.classList.add('bg-base-100');
-  
-})
-
+  document.body.setAttribute("data-theme", "cupcake");
+  document.body.classList.add("bg-base-100");
+});
+// 123
 </script>
 
 <template>
