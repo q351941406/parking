@@ -13,6 +13,8 @@
   "dependencies": {
     "@authing/guard-vue3": "^5.3.2",
     "axios": "^1.6.3",
+    "dayjs": "^1.11.10",
+    "element-plus": "^2.6.0",
     "ezuikit-js": "7.7.6",
     "photoswipe": "^5.4.3",
     "vue": "^3.3.11",

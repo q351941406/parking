@@ -43,6 +43,11 @@ const router = createRouter({
       path: '/callback',
       name: 'Callback',
       component: () => import('../views/Callback.vue'),
+    },
+    {
+      path: '/iuoioiuouu',
+      name: 'iuoioiuouu',
+      component: () => import('../views/admin/index.vue'),
     }
     
   ]
