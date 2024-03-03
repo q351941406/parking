@@ -155,7 +155,7 @@
     <el-dialog
       v-model="pageStatus.dialogVisible"
       :title="pageStatus.editFrom.id ? '编辑' : '新增'"
-      width="50%"
+      width="40%"
     >
       <el-form
         ref="submitFromRef"
@@ -165,6 +165,7 @@
       >
         <el-form-item label="用户" prop="user_id">
           <el-select
+            filterable
             v-model="pageStatus.editFrom.user_id"
             size="large"
             placeholder="请选择用户"
@@ -197,6 +198,7 @@
         </el-form-item>
         <el-form-item label="车牌号" prop="plateNumber">
           <el-input
+            class="w-300"
             v-model="pageStatus.editFrom.plateNumber"
             placeholder="请输入车牌号"
             clearable
@@ -204,6 +206,7 @@
         </el-form-item>
         <el-form-item label="航班" prop="flight">
           <el-input
+            class="w-300"
             v-model="pageStatus.editFrom.flight"
             placeholder="请输入航班"
             clearable
@@ -285,6 +288,7 @@
         </el-form-item>
         <el-form-item label="备注" prop="remark">
           <el-input
+            type="textarea"
             v-model="pageStatus.editFrom.remark"
             placeholder="请输入备注"
             clearable
@@ -428,13 +432,13 @@ const options = reactive({
   ],
 });
 const rules = {
-  plateNumber: [
-    {
-      required: true,
-      message: "请输入车牌号",
-      trigger: "change",
-    },
-  ],
+  // plateNumber: [
+  //   {
+  //     required: true,
+  //     message: "请输入车牌号",
+  //     trigger: "change",
+  //   },
+  // ],
   user_id: [
     {
       required: true,
@@ -442,20 +446,20 @@ const rules = {
       trigger: "change",
     },
   ],
-  starTime: [
-    {
-      required: true,
-      message: "请选择进场时间",
-      trigger: "change",
-    },
-  ],
-  endTime: [
-    {
-      required: true,
-      message: "请选择离场时间",
-      trigger: "change",
-    },
-  ],
+  // starTime: [
+  //   {
+  //     required: true,
+  //     message: "请选择进场时间",
+  //     trigger: "change",
+  //   },
+  // ],
+  // endTime: [
+  //   {
+  //     required: true,
+  //     message: "请选择离场时间",
+  //     trigger: "change",
+  //   },
+  // ],
   from_source: [
     {
       required: true,
@@ -470,20 +474,20 @@ const rules = {
       trigger: "change",
     },
   ],
-  price: [
-    {
-      required: true,
-      message: "请输入单日价格",
-      trigger: "change",
-    },
-  ],
-  remark: [
-    {
-      required: true,
-      message: "请输入备注",
-      trigger: "change",
-    },
-  ],
+  // price: [
+  //   {
+  //     required: true,
+  //     message: "请输入单日价格",
+  //     trigger: "change",
+  //   },
+  // ],
+  // remark: [
+  //   {
+  //     required: true,
+  //     message: "请输入备注",
+  //     trigger: "change",
+  //   },
+  // ],
   environment: [
     {
       required: true,
@@ -491,13 +495,13 @@ const rules = {
       trigger: "change",
     },
   ],
-  flight: [
-    {
-      required: true,
-      message: "请输入航班",
-      trigger: "change",
-    },
-  ],
+  // flight: [
+  //   {
+  //     required: true,
+  //     message: "请输入航班",
+  //     trigger: "change",
+  //   },
+  // ],
 };
 const getList = async () => {
   try {
@@ -651,4 +655,17 @@ onMounted(async () => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.el-input {
+  max-width: 240px !important;
+}
+.el-textarea__inner {
+  max-width: 300px;
+}
+.el-textarea {
+  max-width: 240px !important;
+}
+.w-300 {
+  max-width: 300px;
+}
+</style>
