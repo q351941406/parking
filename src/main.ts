@@ -12,6 +12,7 @@ import store from '../src/components/Store.js'
 
 
 
+
 const domain = `${window.location.origin}/callback`
 // console.log('dumain',dumain);
 
@@ -30,5 +31,6 @@ app.use(router)
 app.use(store)
 
 
-store.dispatch('fetchUserInfo') // 在这里调用action获取用户信息
+await store.dispatch('fetchUserInfo') // 在这里调用action获取用户信息
+
 app.mount('#app')

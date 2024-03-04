@@ -1,42 +1,59 @@
-<template >
-    <div data-theme="cupcake" class="detail">
-        <div class="navbar bg-base-100 shadow-sm">
-            <div class="navbar-start ">
-                <button class="btn btn-ghost" @click="goBack">
-                    <IconBack class="size-5"></IconBack>
-                </button>
-            </div>
-
-            <div class="navbar-center">
-                <h1 class="text-xl ">停车场监控</h1>
-            </div>
-            <div class="navbar-end">
-
-            </div>
-
+<template>
+  <div data-theme="cupcake" class="detail">
+    <Fixations>
+      <div class="navbar bg-base-100 shadow-sm">
+        <div class="navbar-start">
+          <button class="btn btn-ghost" @click="goBack">
+            <IconBack class="size-5"></IconBack>
+          </button>
         </div>
-        <div class="flex justify-center p-5">
-            <span v-if="isLoading" class="loading loading-spinner loading-lg"></span>
-            <div
-                class="grid  card-compact grid-flow-row-dense grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-                <div v-for="(item, index) in data" :key="index" class="card w-full shadow-xl">
-                    <figure><img :src="item.picture_url" alt="Shoes"></figure>
-                    <div class="card-body">
-                        <h2 class="card-title text-sm">{{ item.title }}</h2>
-                        <p class="text-xs">{{ item.updatedAt }}</p>
-                        <div class="card-actions justify-center">
-                            <button class="btn btn-block btn-primary" @click="handleOpen(item)">查看</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+        <div class="navbar-center">
+          <h1 class="text-xl">停车场监控</h1>
         </div>
+        <div class="navbar-end"></div>
+      </div>
+    </Fixations>
+    <div v-if="isLoading" class="center-box">
+      <span v-if="isLoading" class="loading loading-spinner loading-lg"></span>
     </div>
+    <div class="flex justify-center p-5">
+      <div
+        class="grid card-compact grid-flow-row-dense grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"
+      >
+        <div
+          v-for="(item, index) in data"
+          :key="index"
+          class="card w-full shadow-xl"
+        >
+          <figure><img :src="item.picture_url" alt="Shoes" /></figure>
+          <div class="card-body">
+            <h2 class="card-title text-sm">{{ item.title }}</h2>
+            <p class="text-xs">{{ item.updatedAt }}</p>
+            <div class="card-actions justify-center">
+              <button
+                class="btn btn-block btn-primary"
+                @click="handleOpen(item)"
+              >
+                查看
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <PlayView v-if="showPlayView" @close="handleClose" :item="currentSelectItem" />
+  <PlayView
+    v-if="showPlayView"
+    @close="handleClose"
+    :item="currentSelectItem"
+  />
 </template>
 
 <script setup lang="js">
+import Fixations from "@/components/Fixations/index.vue";
+
 import { onMounted, ref } from "vue";
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
@@ -76,3 +93,11 @@ const getData = async () => {
 };
 getData();
 </script>
+<style scoped>
+.center-box {
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
