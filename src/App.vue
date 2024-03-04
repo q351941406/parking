@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { onMounted,onBeforeMount} from "vue";
 import { RouterLink, RouterView } from "vue-router";
-import { useStore } from 'vuex';
-const store = useStore();
+// import { useStore } from 'vuex';
+// const store = useStore();
 // onBeforeMount(async () => {
 
 //   await store.dispatch('fetchUserInfo') // 在这里调用action获取用户信息

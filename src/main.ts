@@ -11,14 +11,7 @@ import '@authing/guard-vue3/dist/esm/guard.min.css'
 import store from '../src/components/Store.js'
 
 
-async function init() {
-    // 如果有必要的话，执行异步操作来加载用户信息
-    await store.dispatch('fetchUserInfo');
-  
-   
-  }
-// 初始化应用
-await init();
+
 
 const domain = `${window.location.origin}/callback`
 // console.log('dumain',dumain);
@@ -42,5 +35,12 @@ app.use(store)
 //     await store.dispatch('fetchUserInfo') // 在这里调用action获取用户信息
 // })
 // await store.dispatch('fetchUserInfo') // 在这里调用action获取用户信息
-
+async function init() {
+    // 如果有必要的话，执行异步操作来加载用户信息
+    await store.dispatch('fetchUserInfo');
+  
+   
+  }
+// 初始化应用
+await init();
 app.mount('#app')
