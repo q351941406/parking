@@ -48,8 +48,14 @@ const router = createRouter({
       path: '/iuoioiuouu',
       name: 'iuoioiuouu',
       component: () => import('../views/admin/index.vue'),
-    }
-    
+    },
+    {
+      path: '/userOrderlist',
+      name: 'userOrderlist',
+      component: () => import('../views/user/OrderList.vue'),
+      meta: { requiresAuth: false }
+    },
+
   ]
 })
 
@@ -58,7 +64,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   // 假设有个函数isUserLoggedIn()来判断用户是否登录，需要你自己实现
-  const isLoggedIn = isUserLoggedIn(); 
+  const isLoggedIn = isUserLoggedIn();
   if (requiresAuth && !isLoggedIn) {// 用户未登录，需要认证的页面将重定向到登录页或者首页
     // next({ name: 'login' }); // 假设登录页面的路由名为 'login'
     const guard = useGuard()

@@ -555,7 +555,6 @@ const getList = async () => {
             : status == 3
             ? "已取"
             : "",
-        environmentText: environment == 0 ? "室内" : "室外",
         starTimeText: dayjs(starTime).format("YYYY-MM-DD HH:mm:ss"),
         endTimeText: endTime
           ? dayjs(endTime).format("YYYY-MM-DD HH:mm:ss")
