@@ -561,7 +561,9 @@ const getList = async () => {
             : status == 3
             ? "已取"
             : "",
-        starTimeText: dayjs(starTime).format("YYYY-MM-DD HH:mm:ss"),
+        starTimeText: starTime
+          ? dayjs(starTime).format("YYYY-MM-DD HH:mm:ss")
+          : "-",
         endTimeText: endTime
           ? dayjs(endTime).format("YYYY-MM-DD HH:mm:ss")
           : "-",
