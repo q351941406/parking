@@ -61,7 +61,7 @@
           </div>
           <div class="item-main-row">
             <div class="left">来源</div>
-            <div class="rigth">来源于{{ item.fromSourceText }}</div>
+            <div class="rigth">{{ item.fromSourceText }}</div>
           </div>
           <div class="item-main-row">
             <div class="left">状态</div>
