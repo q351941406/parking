@@ -1,10 +1,20 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { onMounted,onBeforeMount} from "vue";
 import { RouterLink, RouterView } from "vue-router";
+import { useStore } from 'vuex';
+const store = useStore();
+// onBeforeMount(async () => {
 
-onMounted(() => {
+//   await store.dispatch('fetchUserInfo') // 在这里调用action获取用户信息
+//   const info = store.state.userInfo;
+//     console.log(info);
+// });
+onMounted(async () => {
   document.body.setAttribute("data-theme", "cupcake");
   document.body.classList.add("bg-base-100");
+  // await store.dispatch('fetchUserInfo') // 在这里调用action获取用户信息
+  // const info = store.state.userInfo;
+  //   console.log(info);
 });
 // 123
 </script>
