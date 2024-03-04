@@ -10,17 +10,10 @@ import type { GuardOptions } from '@authing/guard-vue3'
 import '@authing/guard-vue3/dist/esm/guard.min.css'
 import store from '../src/components/Store.js'
 
-
-(async function init() {
-    // 执行异步操作来加载用户信息
-    await store.dispatch('fetchUserInfo');
-
-
-})() // 这个额外的 `()` 使函数立即执行
-    .catch(() => {
-        // 这里处理任何在初始化过程中抛出的错误
-        console.error('Failed to initialize the app:');
-    });
+// (async function init() {
+//     // 执行异步操作来加载用户信息
+//     await store.dispatch('fetchUserInfo');
+// })()
 
 const domain = `${window.location.origin}/callback`
 // console.log('dumain',dumain);
@@ -37,12 +30,7 @@ app.use(
     createGuard(guardOptions)
 )
 app.use(router)
-app.use(store)
+app.use(store);
 
-// store.dispatch('fetchUserInfo') // 在这里调用action获取用户信息
-// window.addEventListener("beforeunload", async () => {
-//     await store.dispatch('fetchUserInfo') // 在这里调用action获取用户信息
-// })
-// await store.dispatch('fetchUserInfo') // 在这里调用action获取用户信息
 
 app.mount('#app')

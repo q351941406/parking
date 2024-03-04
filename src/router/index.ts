@@ -4,8 +4,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { useGuard } from '@authing/guard-vue3'
 import { isUserLoggedIn } from '@/components/Tool.js';
 
-
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [

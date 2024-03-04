@@ -90,13 +90,14 @@
 import IconBack from "@/components/icons/IconBack.vue";
 import Fixations from "@/components/Fixations/index.vue";
 import { useRouter } from "vue-router";
-import { useStore } from "vuex";
+
+import store from '@/components/Store.js'
 import dayjs from "dayjs";
 import { request } from "@/components/request";
 import { reactive, onMounted } from "vue";
 const router = useRouter();
 
-const store = useStore();
+
 
 const pageStatus = reactive({
   isLoading: true,
