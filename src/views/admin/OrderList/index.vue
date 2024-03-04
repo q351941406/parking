@@ -523,6 +523,12 @@ const getList = async () => {
         ...v,
         phone: User.phone,
         ParkingLotName: ParkingLot.title,
+        environmentText:
+          environment == 0
+            ? "室内"
+            : environment == 1
+            ? "室外"
+            : "",
         fromSourceText:
           from_source == 0
             ? "未分配"
