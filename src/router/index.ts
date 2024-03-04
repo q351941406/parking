@@ -53,7 +53,7 @@ const router = createRouter({
       path: '/userOrderlist',
       name: 'userOrderlist',
       component: () => import('../views/user/OrderList.vue'),
-      meta: { requiresAuth: false }
+      meta: { requiresAuth: true }
     },
 
   ]
