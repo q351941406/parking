@@ -151,8 +151,16 @@
           </template>
         </el-table-column>
       </el-table>
+      <Pagination
+        v-model="pageStatus.selectFrom.page"
+        v-model:pageSize="pageStatus.selectFrom.pageSize"
+        :total="pageStatus.selectFrom.count"
+        @change="getList()"
+      />
     </el-card>
     <el-dialog
+      :close-on-press-escape="false"
+      :close-on-click-modal="false"
       v-model="pageStatus.dialogVisible"
       :title="pageStatus.editFrom.id ? '编辑' : '新增'"
       width="40%"
@@ -325,13 +333,18 @@ import {
   ElDatePicker,
 } from "element-plus";
 import "element-plus/dist/index.css";
+import Pagination from "@/components/Pagination/index.vue";
 const elFromRef = ref();
 const submitFromRef = ref();
 const pageStatus = reactive({
   dialogVisible: false,
   list: [],
   loading: false,
-  selectFrom: {},
+  selectFrom: {
+    page: 1,
+    pageSize: 20,
+    count: 0,
+  },
   editFrom: {},
 });
 const tableData = computed(() => {
@@ -505,10 +518,14 @@ const rules = {
 };
 const getList = async () => {
   try {
+    const { page, pageSize } = pageStatus.selectFrom;
     const res = await request("admin/order/getList", "get", {
-      // ...pageStatus.selectFrom,
+      page,
+      pageSize,
     });
-    const { data = [] } = res;
+    const { data = [], page: pageNo = 0, count } = res;
+    pageStatus.selectFrom.page = pageNo;
+    pageStatus.selectFrom.count = count;
     pageStatus.list = data.map((v) => {
       const {
         environment,
@@ -524,11 +541,7 @@ const getList = async () => {
         phone: User.phone,
         ParkingLotName: ParkingLot.title,
         environmentText:
-          environment == 0
-            ? "室内"
-            : environment == 1
-            ? "室外"
-            : "",
+          environment == 0 ? "室内" : environment == 1 ? "室外" : "",
         fromSourceText:
           from_source == 0
             ? "未分配"
