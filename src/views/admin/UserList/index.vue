@@ -19,7 +19,7 @@
       <el-button style="margin: 0 0 20px 0" type="" @click.stop="edit()"
         >创建用户</el-button
       >
-      <el-table v-loading="pageStatus.loading" :data="tableData" border>
+      <el-table :data="tableData" border>
         <el-table-column sortable label="ID" prop="id" align="center" />
         <el-table-column sortable label="手机号" prop="phone" align="center" />
         <!-- <el-table-column
@@ -58,8 +58,16 @@
           </template>
         </el-table-column> -->
       </el-table>
+      <Pagination
+        v-model="pageStatus.selectFrom.page"
+        v-model:pageSize="pageStatus.selectFrom.pageSize"
+        :total="pageStatus.selectFrom.count"
+        @change="getList()"
+      />
     </el-card>
     <el-dialog
+      :close-on-press-escape="false"
+      :close-on-click-modal="false"
       v-model="pageStatus.dialogVisible"
       :title="pageStatus.editFrom.id ? '编辑' : '新增'"
       width="400"
@@ -108,6 +116,8 @@ import {
   ElDatePicker,
 } from "element-plus";
 import "element-plus/dist/index.css";
+import Pagination from "@/components/Pagination/index.vue";
+
 const elFromRef = ref();
 const submitFromRef = ref();
 const tableData = computed(() => {
@@ -121,10 +131,12 @@ const tableData = computed(() => {
 });
 const pageStatus = reactive({
   dialogVisible: false,
-  loading: false,
   list: [],
   selectFrom: {
     phone: "",
+    page: 1,
+    pageSize: 20,
+    count: 0,
   },
   editFrom: {},
 });
@@ -140,11 +152,14 @@ const rules = {
 };
 const getList = async () => {
   try {
-    pageStatus.loading = true;
+    const { page, pageSize } = pageStatus.selectFrom;
     const res = await request("admin/user/getList", "get", {
-      // ...pageStatus.selectFrom,
+      page,
+      pageSize,
     });
-    const { data = [] } = res;
+    const { data = [], page: pageNo = 0, count } = res;
+    pageStatus.selectFrom.page = pageNo;
+    pageStatus.selectFrom.count = count;
     pageStatus.list = data.map((v) => {
       const { updatedAt, createdAt } = v;
       return {
@@ -153,10 +168,7 @@ const getList = async () => {
         updatedTime: dayjs(updatedAt).format("YYYY-MM-DD HH:mm:ss"),
       };
     });
-    pageStatus.loading = false;
   } catch (error) {
-    pageStatus.loading = false;
-
     console.log(error);
   }
 };
