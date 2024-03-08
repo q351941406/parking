@@ -523,6 +523,12 @@ const getList = async () => {
         ...v,
         phone: User.phone,
         ParkingLotName: ParkingLot.title,
+        environmentText:
+          environment == 0
+            ? "室内"
+            : environment == 1
+            ? "室外"
+            : "",
         fromSourceText:
           from_source == 0
             ? "未分配"
@@ -555,7 +561,9 @@ const getList = async () => {
             : status == 3
             ? "已取"
             : "",
-        starTimeText: dayjs(starTime).format("YYYY-MM-DD HH:mm:ss"),
+        starTimeText: starTime
+          ? dayjs(starTime).format("YYYY-MM-DD HH:mm:ss")
+          : "-",
         endTimeText: endTime
           ? dayjs(endTime).format("YYYY-MM-DD HH:mm:ss")
           : "-",

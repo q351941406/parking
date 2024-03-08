@@ -107,11 +107,12 @@ import IconPoint from '../components/icons/IconPoint.vue'
 import { useStore } from 'vuex';
 import { useGuard } from "@authing/guard-vue3";
 import Fixations from "@/components/Fixations/index.vue"
+
+import store from '../components/Store.js'
 const data = ref();
 const isLoading = ref(true);
 
 const router = useRouter();
-const store = useStore();
 const guard = useGuard();
 
 
@@ -119,12 +120,9 @@ function goProfile() {
     router.push({ name: 'Profile' });
 }
 function goOrder() {
-    // router.push({ name: 'Order' });
-    // router.push({ name: 'CameraList' });
     router.push({
         path :"/userOrderlist"
      });
-
 }
 
 async function goLogout() {
@@ -137,7 +135,7 @@ async function goLogout() {
 
 }
 onMounted(() => {
-
+    getData();
 })
 
 const handleOpen = async (item) => {
@@ -145,21 +143,22 @@ const handleOpen = async (item) => {
 };
 const getData = async () => {
     const info = store.state.userInfo;
-    console.log(info);
+    // console.log(info.id);
+
     const token = info ? info.token : null;
     const response = await fetch(`${import.meta.env.VITE_APP_API_BASE_URL}/get_parking_lot`, {
         headers: token ? { 'Authorization': `${token}` } : {}
     }); // 调用 API 获取用户信息
     const result = await response.json();
     if (result.code === 0) {
-        // data.value = [...result.data,...result.data,...result.data,...result.data,...result.data, ...result.data, ...result.data];
+        
         data.value = result.data
     } else {
         alert(result.message);
     }
     isLoading.value = false
 };
-getData();
+
 </script>
 <style scoped>
 .center-box {

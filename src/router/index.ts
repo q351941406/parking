@@ -4,8 +4,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { useGuard } from '@authing/guard-vue3'
 import { isUserLoggedIn } from '@/components/Tool.js';
 
-
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -53,7 +51,7 @@ const router = createRouter({
       path: '/userOrderlist',
       name: 'userOrderlist',
       component: () => import('../views/user/OrderList.vue'),
-      meta: { requiresAuth: false }
+      meta: { requiresAuth: true }
     },
 
   ]

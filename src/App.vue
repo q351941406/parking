@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { onMounted,onBeforeMount} from "vue";
 import { RouterLink, RouterView } from "vue-router";
+import store from '../src/components/Store.js'
 
-onMounted(() => {
+onMounted(async () => {
   document.body.setAttribute("data-theme", "cupcake");
   document.body.classList.add("bg-base-100");
+  await store.dispatch('fetchUserInfo') // 更新用户信息
+
 });
 // 123
 </script>

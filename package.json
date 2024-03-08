@@ -16,6 +16,7 @@
     "dayjs": "^1.11.10",
     "element-plus": "^2.6.0",
     "ezuikit-js": "7.7.6",
+    "less": "^4.2.0",
     "photoswipe": "^5.4.3",
     "vue": "^3.3.11",
     "vue-router": "^4.2.5",

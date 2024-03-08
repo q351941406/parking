@@ -24,8 +24,11 @@
     <div class="list">
       <div class="item" v-for="(item, index) in pageStatus.list" :key="index">
         <div class="header">
-          <div class="left">订单{{ index + 1 }}</div>
-          <div class="rigth">{{ item.ParkingLot.title }}</div>
+          <div class="header-box">
+            <div class="left">订单{{ index + 1 }}</div>
+            <div class="rigth">{{ item.ParkingLot.title }}</div>
+          </div>
+          <div class="border-box"></div>
         </div>
         <div class="item-main">
           <div class="item-main-row">
@@ -58,7 +61,7 @@
           </div>
           <div class="item-main-row">
             <div class="left">来源</div>
-            <div class="rigth">来源于{{ item.fromSourceText }}</div>
+            <div class="rigth">{{ item.fromSourceText }}</div>
           </div>
           <div class="item-main-row">
             <div class="left">状态</div>
@@ -71,9 +74,12 @@
               }"
             />
           </div>
-          <div class="item-main-btn" @click.stop="handleItem(item)">
+          <button
+            class="btn btn-block btn-primary"
+            @click.stop="handleItem(item)"
+          >
             查看监控
-          </div>
+          </button>
         </div>
       </div>
     </div>
@@ -84,13 +90,14 @@
 import IconBack from "@/components/icons/IconBack.vue";
 import Fixations from "@/components/Fixations/index.vue";
 import { useRouter } from "vue-router";
-import { useStore } from "vuex";
+
+import store from '@/components/Store.js'
 import dayjs from "dayjs";
 import { request } from "@/components/request";
 import { reactive, onMounted } from "vue";
 const router = useRouter();
 
-const store = useStore();
+
 
 const pageStatus = reactive({
   isLoading: true,
@@ -160,11 +167,16 @@ onMounted(() => {
       margin-bottom: 10px;
 
       .header {
-        display: flex;
-        font-size: 17px;
         padding: 16px 20px;
-        font-weight: 600;
-        justify-content: space-between;
+        .header-box {
+          padding: 16px 0;
+          display: flex;
+          font-size: 17px;
+          font-weight: 600;
+          justify-content: space-between;
+        }
+      }
+      .border-box {
         border-bottom: 2px dashed #b8bdc1;
       }
       .item-main {
