@@ -75,7 +75,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="">
-          <!-- <el-button type="" @click.stop="getList()">搜索</el-button> -->
+          <el-button type="" @click.stop="getList()">搜索</el-button>
           <el-button type="" @click.stop="reset()">重置</el-button>
         </el-form-item>
       </el-form>
@@ -85,6 +85,31 @@
         >创建订单</el-button
       >
       <el-table v-loading="pageStatus.loading" :data="tableData" border>
+        <el-table-column sortable label="ID" prop="id" align="center" />
+        <el-table-column
+          sortable
+          label="订单编号"
+          prop="orderNumber"
+          align="center"
+        />
+        <el-table-column
+          sortable
+          label="OTA订单编号"
+          prop="otaOrderID"
+          align="center"
+        />
+        <el-table-column
+          sortable
+          label="OTA订单项节点"
+          prop="otaItems"
+          align="center"
+        />
+        <el-table-column
+          sortable
+          label="OTA状态"
+          prop="otaStatus"
+          align="center"
+        />
         <el-table-column sortable label="ID" prop="id" align="center" />
         <el-table-column
           sortable
@@ -356,19 +381,20 @@ const tableData = computed(() => {
     environment = "",
     phone = "",
   } = selectFrom;
-  return list.filter((v) => {
-    return (
-      (phone ? v.phone.indexOf(phone) > -1 : true) &&
-      (parking_lot_id || parking_lot_id === 0
-        ? v.parking_lot_id == parking_lot_id
-        : true) &&
-      (from_source || from_source === 0
-        ? v.from_source == from_source
-        : true) &&
-      (status || status === 0 ? v.status == status : true) &&
-      (environment || environment === 0 ? v.environment == environment : true)
-    );
-  });
+  return list;
+  // return list.filter((v) => {
+  //   return (
+  //     (phone ? v.phone.indexOf(phone) > -1 : true) &&
+  //     (parking_lot_id || parking_lot_id === 0
+  //       ? v.parking_lot_id == parking_lot_id
+  //       : true) &&
+  //     (from_source || from_source === 0
+  //       ? v.from_source == from_source
+  //       : true) &&
+  //     (status || status === 0 ? v.status == status : true) &&
+  //     (environment || environment === 0 ? v.environment == environment : true)
+  //   );
+  // });
 });
 const options = reactive({
   parkingList: [],
@@ -413,6 +439,10 @@ const options = reactive({
     {
       label: "商务合作",
       value: 9,
+    },
+    {
+      label: "携程",
+      value: 10,
     },
   ],
   status: [
@@ -518,10 +548,32 @@ const rules = {
 };
 const getList = async () => {
   try {
-    const { page, pageSize } = pageStatus.selectFrom;
+    const {
+      page,
+      pageSize,
+      parking_lot_id = "",
+      from_source = "",
+      status = "",
+      environment = "",
+      phone = "",
+    } = pageStatus.selectFrom;
+    const parmas = {
+      parking_lot_id,
+      from_source,
+      status,
+      environment,
+      phone,
+    };
+    const reqParmas = {};
+    Object.keys(parmas).map((key) => {
+      if (parmas[key]) {
+        reqParmas[key] = parmas[key];
+      }
+    });
     const res = await request("admin/order/getList", "get", {
       page,
       pageSize,
+      ...reqParmas,
     });
     const { data = [], page: pageNo = 0, count } = res;
     pageStatus.selectFrom.page = pageNo;
@@ -535,6 +587,7 @@ const getList = async () => {
         from_source,
         ParkingLot,
         User,
+        otaStatus,
       } = v;
       return {
         ...v,
@@ -563,6 +616,8 @@ const getList = async () => {
             ? "视频号"
             : from_source == 9
             ? "商务合作"
+            : from_source == 10
+            ? "携程"
             : "",
         statusText:
           status == 0
@@ -580,6 +635,40 @@ const getList = async () => {
         endTimeText: endTime
           ? dayjs(endTime).format("YYYY-MM-DD HH:mm:ss")
           : "-",
+        otaStatus:
+          otaStatus == 0
+            ? ""
+            : otaStatus == 1
+            ? "新订待确认"
+            : otaStatus == 2
+            ? "新订已确认"
+            : otaStatus == 3
+            ? "取消待确认"
+            : otaStatus == 4
+            ? "部分取消"
+            : otaStatus == 5
+            ? "全部取消"
+            : otaStatus == 6
+            ? "已取物品"
+            : otaStatus == 7
+            ? "部分使用"
+            : otaStatus == 8
+            ? "全部使用"
+            : otaStatus == 9
+            ? "已还物品"
+            : otaStatus == 10
+            ? "已过期"
+            : otaStatus == 10
+            ? "已过期"
+            : otaStatus == 11
+            ? "待支付"
+            : otaStatus == 12
+            ? "支付待确认"
+            : otaStatus == 13
+            ? "支付已确认"
+            : otaStatus == 14
+            ? "预下单取消成功"
+            : "",
       };
     });
   } catch (error) {
