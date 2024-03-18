@@ -6,6 +6,8 @@
         <el-table-column sortable label="名称" prop="title" align="center" />
         <el-table-column sortable label="IATA" prop="IATA" align="center" />
         <el-table-column sortable label="ICAO" prop="ICAO" align="center" />
+        <el-table-column sortable label="室内" prop="indoor" align="center" />
+        <el-table-column sortable label="室外" prop="outdoor" align="center" />
         <el-table-column
           sortable
           label="创建时间"
