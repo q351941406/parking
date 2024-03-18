@@ -1,0 +1,1 @@
+import{_ as s,o as a,c as o,a as t,X as c}from"./index-EgUD6bev.js";const n={},r={class:"hader"},d={class:"bg-base-100"};function _(e,i){return a(),o("div",r,[t("div",d,[c(e.$slots,"default",{},void 0,!0)])])}const f=s(n,[["render",_],["__scopeId","data-v-7d04a607"]]);export{f as F};

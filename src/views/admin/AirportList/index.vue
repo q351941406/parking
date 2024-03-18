@@ -57,7 +57,7 @@
         <el-form-item label="环境" prop="environment">
           <el-select
             clearable
-            v-model="pageStatus.selectFrom.environment"
+            v-model="pageStatus.editFrom.environment"
             size="large"
             placeholder="请选择状态"
             style="width: 240px"
@@ -73,7 +73,7 @@
         <el-form-item label="服务" prop="valetParking">
           <el-select
             clearable
-            v-model="pageStatus.selectFrom.valetParking"
+            v-model="pageStatus.editFrom.valetParking"
             size="large"
             placeholder="请选择状态"
             style="width: 240px"
