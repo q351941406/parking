@@ -110,7 +110,6 @@
           prop="otaStatus"
           align="center"
         />
-        <el-table-column sortable label="ID" prop="id" align="center" />
         <el-table-column
           sortable
           label="车牌号"
@@ -566,7 +565,7 @@ const getList = async () => {
     };
     const reqParmas = {};
     Object.keys(parmas).map((key) => {
-      if (parmas[key]) {
+      if (String(parmas[key])) {
         reqParmas[key] = parmas[key];
       }
     });
