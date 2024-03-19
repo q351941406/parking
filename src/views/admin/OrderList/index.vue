@@ -110,7 +110,6 @@
           prop="otaStatus"
           align="center"
         />
-        <el-table-column sortable label="ID" prop="id" align="center" />
         <el-table-column
           sortable
           label="车牌号"
@@ -170,6 +169,9 @@
         >
           <template #default="scope">
             <el-button type="" @click.stop="edit(scope.row)"> 编辑 </el-button>
+            <el-button type="" @click.stop="verification(scope.row)">
+              核销
+            </el-button>
             <el-button type="" @click.stop="remove(scope.row.id)">
               删除
             </el-button>
@@ -566,7 +568,7 @@ const getList = async () => {
     };
     const reqParmas = {};
     Object.keys(parmas).map((key) => {
-      if (parmas[key]) {
+      if (String(parmas[key])) {
         reqParmas[key] = parmas[key];
       }
     });
@@ -756,6 +758,28 @@ const getParkingList = async () => {
   const res = await request("get_parking_lot", "get", {});
   const { data = [] } = res;
   options.parkingList = data;
+};
+const verification = (row) => {
+  const { id } = row;
+  ElMessageBox.alert("您确定要核销此订单吗?", "提示", {
+    confirmButtonText: "确定",
+    callback: async (action) => {
+      if ("confirm" === action) {
+        // 发送核销请求
+        const res = await request("ctrip/orderConsumedNotice", "post", {
+          id,
+        });
+        const { code, message } = res;
+        ElMessage({
+          message,
+          type: code == 0 ? "success" : "error",
+        });
+        if (code === 0) {
+          await getList();
+        }
+      }
+    },
+  });
 };
 
 onMounted(async () => {
